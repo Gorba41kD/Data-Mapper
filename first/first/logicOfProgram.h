@@ -3,5 +3,4 @@ namespace pro
 {
 	void secondAttempt();
 	void printGuest();
-
 }
