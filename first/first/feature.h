@@ -1,7 +1,6 @@
-#include<string>
+#pragma once
 #include<vector>
 #include"AirLine.h"
-#pragma once
 namespace func
 {
 	void printAirlines(const std::vector<AirLine>& vec);
