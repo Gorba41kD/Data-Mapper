@@ -1,5 +1,5 @@
 #include<vector>
-#include"AirLine.h"
+#include"../Mapper.Model/AirLine.h"
 #include"pqxx/pqxx"
 #include"enum_Program.h"
 namespace func
