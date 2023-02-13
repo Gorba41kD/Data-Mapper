@@ -6,3 +6,4 @@ add_subdirectory(Mapper.DataAccess)
 add_subdirectory(Mapper.Exe)
 
 add_library(${TARGET} INTERFACE)
+

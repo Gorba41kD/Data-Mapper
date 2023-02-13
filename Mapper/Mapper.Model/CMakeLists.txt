@@ -1,6 +1,5 @@
 set(TARGET Mapper.Model)
 
-
 set(SOURCE_FILES
         AirLine.h
         AirLine.cpp

@@ -1,9 +1,6 @@
-set(PROJECT Data-Mapper)
+project(Data-Mapper)
 
 cmake_minimum_required(VERSION 3.17.0)
-
-
-list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
 
 add_subdirectory(Mapper)
 
@@ -14,11 +11,14 @@ if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
             TLS_VERIFY ON)
 endif()
 
+list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
+
 include(${CMAKE_BINARY_DIR}/conan.cmake)
 
 conan_cmake_configure(REQUIRES
         libpq/14.5
-        libpqxx/7.7.4)
+        libpqxx/7.7.4
+        GENERATORS cmake_find_package_multi)
 
 conan_cmake_autodetect(settings)
 conan_cmake_install(PATH_OR_REFERENCE .

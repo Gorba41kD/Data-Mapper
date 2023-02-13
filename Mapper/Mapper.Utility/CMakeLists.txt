@@ -1,7 +1,4 @@
-set (SUBTARGET Mapper.Utility)
-set(TARGET ${TARGET}.${SUBTARGET})
-
-set (FOLDER Mapper.Utility)
+set (TARGET Mapper.Utility)
 
 set(SOURCE_FILES
         enum_AirLine.h
@@ -13,8 +10,6 @@ set(SOURCE_FILES
         logicOfProgram.h)
 
 add_library(${TARGET} STATIC ${SOURCE_FILES})
-
-set_target_properties(${TARGET} PROPERTIES FOLDER ${FOLDER})
 
 target_link_libraries(${TARGET} 
         PUBLIC PostgreSQL::pq libpqxx::pqxx)

@@ -6,6 +6,9 @@ set(SOURCE_FILES
         Repository.cpp
         )
 
-add_library(DataAccess STATIC ${SOURCE_FILES})
+add_library(${TARGET} STATIC ${SOURCE_FILES})
 
-#target_include_directories(${TARGET} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/)
+target_link_libraries(${TARGET} 
+        PUBLIC PostgreSQL::pq libpqxx::pqxx)
+
+target_include_directories(${TARGET} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/)
