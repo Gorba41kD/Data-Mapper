@@ -5,5 +5,6 @@ add_subdirectory(Mapper.Model)
 add_subdirectory(Mapper.DataAccess)
 add_subdirectory(Mapper.Exe)
 
-add_library(${TARGET} INTERFACE)
+#add_library(${TARGET} INTERFACE)
 
+#find_package(libpqxx REQUIRED)

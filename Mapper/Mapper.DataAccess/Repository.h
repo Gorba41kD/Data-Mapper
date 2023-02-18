@@ -1,6 +1,6 @@
 #pragma once
 #include"Irepository.h"
-#include"pqxx/pqxx"
+#include <pqxx/pqxx>
 #include"../Mapper.Utility/enum_AirLine.h"
 #include"../Mapper.Utility/enum_History.h"
 #include"../Mapper.Model/Information.h"
