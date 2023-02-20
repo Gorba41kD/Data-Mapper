@@ -1,6 +1,6 @@
 #pragma once
 #include<vector>
-#include"AirLine.h"
+#include"../Mapper.Model/AirLine.h"
 namespace func
 {
 	void printAirlines(const std::vector<AirLine>& vec);

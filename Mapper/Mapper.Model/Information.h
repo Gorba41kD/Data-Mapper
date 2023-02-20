@@ -1,6 +1,6 @@
 #pragma once
 #include<iostream>
-#include"Irepository.h"
+#include"../Mapper.DataAccess/Irepository.h"
 class Information
 {
 	public:

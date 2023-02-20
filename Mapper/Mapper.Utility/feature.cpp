@@ -1,7 +1,8 @@
 #include<vector>
-#include"AirLine.h"
-#include"pqxx/pqxx"
+#include"../Mapper.Model/AirLine.h"
 #include"enum_Program.h"
+#include <pqxx/pqxx>
+
 namespace func
 {
     std::string connectionString = "host=localhost port=5432 dbname= program user=postgres password =12081962";

@@ -1,7 +1,7 @@
 #pragma once
 #include<map>
-#include"Passport.h"
-#include"Person.h"
+#include"../Mapper.Model/Passport.h"
+#include"../Mapper.Model/Person.h"
 class Information;
 class Irepository
 {
