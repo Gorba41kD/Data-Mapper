@@ -1,7 +1,13 @@
 set (TARGET Mapper.Arch)
 
 set(SOURCE_FILES
-       Arch.cpp)
+       Arch.cpp
+       BaseDataType.h
+       IRepository.h
+       Passport.h
+       ContainerOfModels.h
+       Person.h
+       Repository.h)
 
 add_executable(${TARGET} Arch.cpp)
 
