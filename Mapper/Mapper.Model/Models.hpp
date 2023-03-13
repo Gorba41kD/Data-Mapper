@@ -21,11 +21,6 @@ namespace Arch
 			_data[OWNER_ID].emplace_back(info[OWNER_ID].as<std::string>());
 		}
 
-		const std::string_view getFieldName(ChannelFields field) const noexcept override
-		{
-
-		}
-
 		explicit ChannelModel(std::string modelName = "Channel", size_t amountFields = 3) :AbstractModel(modelName, amountFields)
 		{
 			_data.emplace(ID, Strings());

@@ -8,11 +8,12 @@ set(SOURCE_FILES
         feature.cpp
         logicOfProgram.cpp
         logicOfProgram.h)
-
+              
 add_library(${TARGET} STATIC ${SOURCE_FILES})
 
 target_link_libraries(${TARGET} 
-        PUBLIC PostgreSQL::pq libpqxx::pqxx)
+        PUBLIC libpqxx::pqxx
+        PUBLIC Mapper.DataAccess Mapper.Model)
 
 target_include_directories(${TARGET}
         PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/)
