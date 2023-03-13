@@ -1,9 +1,9 @@
 #pragma once
 #include"Irepository.h"
 #include <pqxx/pqxx>
-#include"../Mapper.Utility/enum_AirLine.h"
-#include"../Mapper.Utility/enum_History.h"
-#include"../Mapper.Model/Information.h"
+#include "enum_AirLine.h"
+#include "enum_History.h"
+#include "Information.h"
 
 class Repository :public Irepository
 {
