@@ -93,7 +93,7 @@
         {
             return PASSPORT_SIZE;
         }
-        void setFieldsInDb(std::stringstream& buffer, int counterFieldsDefinition) override
+        void setFieldsInClassFromDb(std::stringstream& buffer, int counterFieldsDefinition) override
         {
             switch (counterFieldsDefinition)
             {

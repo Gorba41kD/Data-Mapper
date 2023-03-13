@@ -99,7 +99,7 @@ public:
         sql += this->getName() + "', '" + this->getSurName() + "')";
         return sql;
     }*/
-    void setFieldsInDb(std::stringstream& buffer, int counterFieldsDefinition) override
+    void setFieldsInClassFromDb(std::stringstream& buffer, int counterFieldsDefinition) override
     {
         switch (counterFieldsDefinition)
         {

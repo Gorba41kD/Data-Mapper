@@ -13,7 +13,7 @@ public:
     virtual ~BaseDataType() {};
     virtual std::ostream& outPut(std::ostream& out) const = 0;
     virtual std::string getTableName()const = 0;
-    virtual void setFieldsInDb(std::stringstream& buffer, int counterFieldsDefinition) = 0;
+    virtual void setFieldsInClassFromDb(std::stringstream& buffer, int counterFieldsDefinition) = 0;
     virtual std::stringstream getFieldFromClass(int field)const = 0;
     virtual int getCountTableFields()const = 0;
     virtual std::string getFieldName(int field)const = 0;

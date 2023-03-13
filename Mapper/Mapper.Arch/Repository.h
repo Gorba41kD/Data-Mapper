@@ -96,7 +96,7 @@ public:
                     std::cout << "LOOK AT Repository::readModel(std::unique_ptr<BaseDataType>& model, const std::vector<int>& fields, int id = 1)override" << std::endl;
                     break;
                 }
-                model->setFieldsInDb(buffer, setField);
+                model->setFieldsInClassFromDb(buffer, setField);
             }
         }
         else
@@ -137,7 +137,7 @@ public:
                     std::cout << "LOOK AT Repository::readModel(std::unique_ptr<BaseDataType>& model, const std::vector<int>& fields, int id = 1)override" << std::endl;
                     break;
                 }
-                model->setFieldsInDb(buffer, fields[setField]);
+                model->setFieldsInClassFromDb(buffer, fields[setField]);
             }
         }
     }
@@ -185,7 +185,7 @@ public:
                         std::cout << "LOOK AT Repository::readCollections(const std::vector<int>& fields)override" << std::endl;
                         break;
                     }
-                    model->setFieldsInDb(buffer, setField);
+                    model->setFieldsInClassFromDb(buffer, setField);
                 }
                 container.emplace(model->getId(), std::move(model));
             }
@@ -227,7 +227,7 @@ public:
                         std::cout << "LOOK AT Repository::readCollections(const std::vector<int>& fields)override" << std::endl;
                         break;
                     }
-                    model->setFieldsInDb(buffer, fields[setField]);
+                    model->setFieldsInClassFromDb(buffer, fields[setField]);
                 }
                 container.emplace(model->getId(), std::move(model));
             }
@@ -346,7 +346,7 @@ public:
                     std::cout << "LOOK AT Repository::readContainer(AbstractModelUtility& model)" << std::endl;
                     break;
                 }
-                person->setFieldsInDb(buffer, setField);
+                person->setFieldsInClassFromDb(buffer, setField);
             }
             container.emplace(person->getId(), std::move(person));
         }
@@ -411,7 +411,7 @@ public:
                 std::cout << "LOOK AT Repository::readContainer(AbstractModelUtility& model)" << std::endl;
                 break;
             }
-            model->setFieldsInDb(buffer, setField);
+            model->setFieldsInClassFromDb(buffer, setField);
         }
     }*/
 };
