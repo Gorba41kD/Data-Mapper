@@ -8,12 +8,13 @@ set(SOURCE_FILES
         Irepository.h
         Repository.cpp
         Repository.h
-        )
+        Adapter.hpp
+        Adapter.cpp)
 
 add_library(${TARGET} STATIC ${SOURCE_FILES})
 
 target_link_libraries(${TARGET} 
-        PRIVATE libpqxx::pqxx PostgreSQL::pq
+        PRIVATE libpqxx::pqxx
         PUBLIC Mapper.Utility
         )
 
