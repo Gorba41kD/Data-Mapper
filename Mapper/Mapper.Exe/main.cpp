@@ -1,10 +1,18 @@
-#include"../Mapper.Utility/logicOfProgram.h"
+#include <iostream>
+#include "Models.hpp"
 
 int main()
 {
-    pro::secondAttempt();
-
-
+    using namespace Arch;
+    try
+    {
+        ChannelModel model;
+    }
+    catch (const std::exception& exp)
+    {
+        std::cerr << exp.what() << std::endl;
+    }
+    
 
     return 0;
 }

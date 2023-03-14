@@ -10,7 +10,8 @@ set(SOURCE_FILES
         Person.h
         Person.cpp
         AbstractModel.hpp
-        Models.hpp)
+        Models.hpp
+        AbstractUtility.hpp)
 
 add_library(${TARGET} STATIC ${SOURCE_FILES})
 

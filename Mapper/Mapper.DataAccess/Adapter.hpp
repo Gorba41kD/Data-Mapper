@@ -15,7 +15,7 @@ namespace Arch
 		// host=localhost port=5432 dbname=program user=postgres password =1221909128 <- connectString
 		explicit Adapter(const std::string& connectString = "host=localhost port=5432 dbname=program user=postgres password=1221909128") :_connection(connectString), _nonTran(_connection) {}
 
-		void read(AbstractModel& model, const std::string& groupBy = "");
+		//void read(AbstractModel& model, const std::string& groupBy = "");
 		
 	};
 }
