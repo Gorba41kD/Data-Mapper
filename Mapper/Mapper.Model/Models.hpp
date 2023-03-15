@@ -10,12 +10,11 @@ namespace Arch
 		NAME = 1,
 		OWNER_ID = 2
 	};
-
-	template<class T = ChannelFields>
-	class ChannelModel : public AbstractModel<T>
+		
+	class ChannelModel: public AbstractModel<ChannelFields>
 	{
 	public:
-		virtual T AbstractModel<T>::getNumEnum(size_t num)const
+		ChannelFields getNumEnum(size_t num)const override
 		{
 			switch (num)
 			{
@@ -39,19 +38,18 @@ namespace Arch
 
 		explicit ChannelModel(FieldNames names = { "id","name","owner_ID" }, std::string modelName = "Channel", size_t amountFields = 3) :AbstractModel(modelName,names, amountFields)
 		{
-			
+			this->init();
 		}
 
-		const size_t getNumFromEnum()const noexcept override
+		const size_t enumToNum(ChannelFields anyEnum)const noexcept override
 		{
-			return 1;
+			return std::get<1>(*std::find_if(_myWTF.begin(), _myWTF.end(), [anyEnum](std::tuple<ChannelFields, size_t, std::string> tpl) {if (std::get<0>(tpl) == anyEnum) return true; }));
 		}
 
-		const std::string getFieldName(size_t)const noexcept override
+		const std::string fieldName(ChannelFields anyEnum)const noexcept override
 		{
-			return "kek";
+			return std::get<2>(*std::find_if(_myWTF.begin(), _myWTF.end(), [anyEnum](std::tuple<ChannelFields, size_t, std::string> tpl) {if (std::get<0>(tpl) == anyEnum) return true; }));
 		}
-
 
 		~ChannelModel() override = default;
 	};
