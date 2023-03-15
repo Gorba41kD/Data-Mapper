@@ -3,6 +3,8 @@
 #include <map>
 #include <vector>
 #include <string>
+#include <regex>
+#include "AbstractModel.hpp"
 
 namespace Arch
 {
@@ -11,6 +13,6 @@ namespace Arch
 	using FieldNames = std::initializer_list<std::string>;
 
 	template<typename Enum>
-	using wtf = std::vector<std::tuple<Enum, size_t, std::string>>;
+	using FieldData = std::vector<std::tuple<Enum, size_t, std::string>>;
 	
 }
