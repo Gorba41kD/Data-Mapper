@@ -47,7 +47,7 @@ namespace Arch
 		* @param Name of the table in the DB
 		* @param Amount of this columns
 		*/
-		explicit ChannelModel(FieldNames names = { "id","name","owner_id" }, std::string modelName = "Channel", size_t amountFields = 3): AbstractModel(modelName, names, amountFields)
+		ChannelModel(FieldNames names = { "id","name","owner_id" }, std::string modelName = "Channel", size_t amountFields = 3): AbstractModel(modelName, names, amountFields)
 		{
 			this->init();
 		}

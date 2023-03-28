@@ -19,18 +19,21 @@ namespace Arch
 		std::vector<std::string> _fieldNames;
 
 	protected:
-		MapType _data;
+		Map<T> _data;
+		//UpTuple<T, Args...> _data;
 		FieldData<T> _fieldData;
 
 	public:
-		explicit AbstractModel(const std::string& modelName, FieldNames names, size_t amountFields) :_modelName(modelName), _amountOfFields(amountFields), _fieldNames(names) {}
+		AbstractModel(const std::string& modelName, FieldNames names, size_t amountFields) :_modelName(modelName), _amountOfFields(amountFields), _fieldNames(names) {}
 
 		constexpr std::string getModelName()const noexcept { return _modelName; }
+
 		const size_t enumToNum(T anyEnum)const noexcept
 		{
 			return std::get<1>(*std::find_if(_fieldData.begin(), _fieldData.end(), [anyEnum](std::tuple<T, size_t, std::string> tpl) {if (std::get<0>(tpl) == anyEnum) return true; else return false; }));
 		}
-		const std::string fieldName(T anyEnum)const noexcept
+
+		const std::string& fieldName(T anyEnum)const noexcept
 		{
 			return std::get<2>(*std::find_if(_fieldData.begin(), _fieldData.end(), [anyEnum](std::tuple<T, size_t, std::string> tpl) {if (std::get<0>(tpl) == anyEnum) return true; else return false; }));
 		}
@@ -50,14 +53,14 @@ namespace Arch
 			{
 				for (auto fieldIter = fields.begin(); fieldIter != fields.end(); ++fieldIter)
 				{
-					_data[this->enumToNum(*fieldIter)].emplace_back(respIter[this->enumToNum(*fieldIter)].as<std::string>());
+					//_data[this->enumToNum(*fieldIter)].emplace_back(respIter[this->enumToNum(*fieldIter)].as<std::string>());
 				}
 			}
 		}
 
-		std::vector<std::string>& operator[](T anyEnum)
+		std::string& operator[](T anyEnum)
 		{
-			return _data[enumToNum(anyEnum)];
+			return _data[anyEnum];
 		}
 
 		virtual ~AbstractModel() = default;
@@ -69,7 +72,7 @@ namespace Arch
 			while (counter < _amountOfFields)
 			{
 				_fieldData.emplace_back(std::make_tuple<T, size_t, std::string>(this->getNumEnum(counter), std::move(counter), (_fieldNames.begin() + counter)->c_str()));
-				_data.insert(std::pair<size_t, std::vector<std::string>>(counter, std::vector<std::string>()));
+				_data.insert(std::pair<T, std::string>(this->getNumEnum(counter), std::string{}));
 				++counter;
 			}
 			_fieldNames.clear();
