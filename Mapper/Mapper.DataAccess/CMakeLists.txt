@@ -9,7 +9,10 @@ set(SOURCE_FILES
         Repository.cpp
         Repository.h
         Adapter.hpp
-        Adapter.cpp)
+        Adapter.cpp
+        Connector.hpp 
+        
+        )
 
 add_library(${TARGET} STATIC ${SOURCE_FILES})
 

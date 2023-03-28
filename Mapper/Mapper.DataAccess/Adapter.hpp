@@ -4,6 +4,7 @@
 #include <regex>
 #include "AbstractModel.hpp"
 #include "Models.hpp"
+#include "Connector.hpp"
 
 namespace Arch
 {
@@ -15,14 +16,16 @@ namespace Arch
 	class Adapter
 	{
 	private:
-		pqxx::connection _connection;
-		pqxx::nontransaction _nonTran;
+		std::unique_ptr<pqxx::nontransaction> _nonTran;
 
 	public:		
 		/*
 		* @param Connection string to your database
 		*/
-		explicit Adapter(const std::string& connectString = "host=localhost port=5432 dbname=program user=postgres password=1221909128") :_connection(connectString), _nonTran(_connection) {}
+		Adapter(const std::string& connectStr= "host=localhost port=5432 dbname=program user=postgres password=1221909128")
+		{
+			_nonTran = std::make_unique<pqxx::nontransaction>(*(Connector::getInstance(connectStr)->getConnection()));
+		}
 
 		/*
 		* @method read
@@ -74,8 +77,7 @@ namespace Arch
 
 				// ^[\(]((?:id)((((>)|(<)|(=)|(>=)|(<=))([0-9]*+))|(([=]|[>]|[<])(\')((.+)|())(\'))))[\)]$
 				
-
-				auto response = _nonTran.exec(sql.c_str());
+				auto response = _nonTran->exec(sql.c_str());
 
 				model.fillMap(response, temporaryFields);
 			}
