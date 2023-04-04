@@ -20,14 +20,14 @@ int main()
 		std::unique_ptr<Person> person = std::make_unique<Person>();
 		person->setName("Dzmitry");
 		person->setSurname("Harbachyk");
-		printInformationAboutModels(person, { Person::PERSON_SIZE});
+		printInformationAboutModels(person, {Person::PERSON_COUNT});
 
 		std::cout << "===========================================================================" << std::endl;
 
 		std::unique_ptr<Passport> passport = std::make_unique<Passport>();
 		passport->setSerialNumber(555111);
 		passport->setRegistration("Brest");
-		printInformationAboutModels(passport, { Passport::PASSPORT_SIZE});
+		printInformationAboutModels(passport, { Passport::PASSPORT_COUNT});
 	}
 	catch (std::exception& exc)
 	{

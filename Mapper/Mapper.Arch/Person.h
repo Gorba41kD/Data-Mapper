@@ -18,7 +18,7 @@ public:
         PERSON_ID,
         PERSON_NAME,
         PERSON_SURNAME,
-        PERSON_SIZE
+        PERSON_COUNT
     };
     std::stringstream getFieldFromClass(int field)const override
     {
@@ -90,7 +90,7 @@ public:
     }
     int getCountTableFields()const override
     {
-        return PERSON_SIZE;
+        return PERSON_COUNT;
     }
    /* std::string save()const override
     {

@@ -18,7 +18,7 @@
             PASSPORT_ID,
             PASSPORT_NUMBER,
             PASSPORT_REGISTRATION,
-            PASSPORT_SIZE
+            PASSPORT_COUNT
         };
 
         std::string getFieldName(int field)const override
@@ -43,6 +43,7 @@
             {
             case PASSPORT_ID:
                 buffer << _id;
+                return buffer;
             case PASSPORT_NUMBER:
                 buffer << _serialNumber;
                 return buffer;
@@ -91,7 +92,7 @@
         }
         int getCountTableFields()const override
         {
-            return PASSPORT_SIZE;
+            return PASSPORT_COUNT;
         }
         void setFieldsInClassFromDb(std::stringstream& buffer, int counterFieldsDefinition) override
         {
