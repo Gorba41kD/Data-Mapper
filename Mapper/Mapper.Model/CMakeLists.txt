@@ -8,7 +8,10 @@ set(SOURCE_FILES
         Passport.h
         Passport.cpp
         Person.h
-        Person.cpp)
+        Person.cpp
+        AbstractModel.hpp
+        Models.hpp
+        AbstractUtility.hpp)
 
 add_library(${TARGET} STATIC ${SOURCE_FILES})
 
