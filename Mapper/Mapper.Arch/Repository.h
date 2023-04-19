@@ -1,6 +1,6 @@
 #pragma once
-#include<pqxx/pqxx>
 #include"IRepository.h"
+#include"Connector.h"
 template<typename T>
 class Repository :public IRepository<T>
 {
@@ -11,9 +11,7 @@ private:
         CONVERT_TO_STRING,
         CONVERT_TO_DOUBLE
     };
-    pqxx::connection _connection;
-    pqxx::result _response;
-    pqxx::nontransaction _nonTran;
+    std::unique_ptr<Connector>& _connector;
     std::string _sql;
     Convert checkFieldInDb(const std::string& fieldDb)
     {
@@ -48,8 +46,7 @@ private:
         }
     }
 public:
-    Repository(const char* connectionString = "host=localhost port=5432 dbname=program user=postgres password =12081962")
-        : _connection(connectionString), _nonTran(_connection)
+    Repository(std::unique_ptr<Connector>& connector) :_connector(connector)
     {
     }
     void readModel(std::unique_ptr<T>& model, const std::vector<int>& fields, int id = 1)override
@@ -74,7 +71,8 @@ public:
             _sql += "_id = ";
             _sql += ID;
             std::cout << "sql code: " << _sql << std::endl;
-            _response = _nonTran.exec(_sql.c_str());
+            //_response = _nonTran.exec(_sql.c_str());
+            auto _response = _connector->getResponse(_sql);
             pqxx::result::const_iterator it = _response.begin();
             int setField = 0;
             for (; setField < fields[firstField]; ++setField)
@@ -116,7 +114,8 @@ public:
             _sql += "_id = ";
             _sql += ID;
             std::cout << "sql code: " << _sql << std::endl;
-            _response = _nonTran.exec(_sql.c_str());
+            //_response = _nonTran.exec(_sql.c_str());
+            auto _response = _connector->getResponse(_sql);
             pqxx::result::const_iterator it = _response.begin();
             for (int setField = 0; setField < fields.size(); ++setField)
             {
@@ -161,7 +160,8 @@ public:
             _sql += " FROM ";
             _sql += temp->getTableName();
             std::cout << "sql code: " << _sql << std::endl;
-            _response = _nonTran.exec(_sql.c_str());
+            //_response = _nonTran.exec(_sql.c_str());
+            auto _response = _connector->getResponse(_sql);
             for (pqxx::result::const_iterator it = _response.begin(); it != _response.end(); ++it)
             {
                 auto model = std::make_unique<T>();
@@ -204,7 +204,8 @@ public:
             _sql += " FROM ";
             _sql += temp->getTableName();
             std::cout << "sql code: " << _sql << std::endl;
-            _response = _nonTran.exec(_sql.c_str());
+            //_response = _nonTran.exec(_sql.c_str());
+            auto _response = _connector->getResponse(_sql);
             for (pqxx::result::const_iterator it = _response.begin(); it != _response.end(); ++it)
             {
                 auto model = std::make_unique<T>();
@@ -282,12 +283,8 @@ public:
         _sql += ")";
         std::cout << "sql code: " << _sql << std::endl;
         //_nonTran.exec(_sql.c_str());
+        _connector->sendQuery(_sql);
     }
-    ~Repository()
-    {
-        _connection.close();
-    }
-
     /*std::map<int, std::shared_ptr<T>> readSpecificCollectionsSecondVariant(const std::vector<int>& fields)
     {
         std::map<int, std::shared_ptr<T>> container;

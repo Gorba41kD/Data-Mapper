@@ -7,7 +7,10 @@ set(SOURCE_FILES
        Passport.h
        ContainerOfModels.h
        Person.h
-       Repository.h)
+       Connector.h
+       Repository.h 
+       Timer.h 
+       ThreadPool.h)
 
 add_executable(${TARGET} Arch.cpp)
 
